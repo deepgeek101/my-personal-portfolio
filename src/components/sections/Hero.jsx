@@ -32,7 +32,7 @@ const Hero = () => {
         <div className='w-full md:w-1/2 order-2 md:order-1'>
           <h1 className='text-4xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white animate-fade-in'>
             Hi, I'm{' '}
-            <span className='text-blue-600 dark:text-blue-400'>Your Name</span>
+            <span className='text-blue-600 dark:text-blue-400'>Deep Chaulagain</span>
           </h1>
           <h2 className='text-2xl md:text-3xl mb-6 text-gray-700 dark:text-gray-300'>
             {typedText}
