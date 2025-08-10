@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import profilePic from '../../assets/deepprofilepicweb.jpg';
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
@@ -61,7 +62,12 @@ const Hero = () => {
 
         <div className='w-full md:w-1/2 order-1 md:order-2'>
           <div className='relative mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-blue-600 dark:border-blue-400 shadow-xl'>
-            {/* Placeholder for profile image */}
+            <img
+              src={profilePic}
+              alt="Deep Chaulagain"
+              loading="lazy"
+              className="object-cover w-full h-full"
+            />
             <div className='w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center'>
               <svg
                 className='w-32 h-32 text-white'
