@@ -7,13 +7,13 @@ const Footer = () => {
         <div className='flex flex-col md:flex-row justify-between items-center'>
           <div className='mb-4 md:mb-0'>
             <p className='text-gray-600 dark:text-gray-400'>
-              © {currentYear} Your Name. All rights reserved.
+              © {currentYear} Deep Chaulagain. All rights reserved.
             </p>
           </div>
 
           <div className='flex space-x-6'>
             <a
-              href='https://github.com/yourusername'
+              href='https://github.com/deepgeek101'
               target='_blank'
               rel='noopener noreferrer'
               className='text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
@@ -25,7 +25,7 @@ const Footer = () => {
             </a>
 
             <a
-              href='https://linkedin.com/in/yourusername'
+              href='https://www.linkedin.com/in/deep-chaulagain-b507aa1b8/'
               target='_blank'
               rel='noopener noreferrer'
               className='text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200'
