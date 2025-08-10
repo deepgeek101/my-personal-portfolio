@@ -101,7 +101,7 @@ const Contact = () => {
                     Email
                   </h4>
                   <p className='text-gray-600 dark:text-gray-400'>
-                    your.email@example.com
+                    deep.chaulagain52@gmail.com
                   </p>
                 </div>
               </div>
@@ -127,7 +127,7 @@ const Contact = () => {
                     Phone
                   </h4>
                   <p className='text-gray-600 dark:text-gray-400'>
-                    +1 (555) 123-4567
+                    +977 9745654628
                   </p>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const Contact = () => {
               </h4>
               <div className='flex space-x-4'>
                 <a
-                  href='https://github.com/yourusername'
+                  href='https://github.com/deepgeek101'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='w-10 h-10 bg-gray-800 dark:bg-gray-600 rounded-lg flex items-center justify-center text-white hover:bg-gray-700 dark:hover:bg-gray-500 transition-colors duration-200'
@@ -186,7 +186,7 @@ const Contact = () => {
                   </svg>
                 </a>
                 <a
-                  href='https://linkedin.com/in/yourusername'
+                  href='www.linkedin.com/in/deep-chaulagain-b507aa1b8'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors duration-200'
@@ -254,7 +254,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className='w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-600 text-gray-900 dark:text-white'
-                  placeholder='your.email@example.com'
+                  placeholder='deep.chaulagain52@gmail.com'
                 />
               </div>
 
