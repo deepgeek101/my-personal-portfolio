@@ -22,25 +22,18 @@ const About = () => {
               My Journey
             </h3>
             <p className='text-gray-600 dark:text-gray-400 mb-6 leading-relaxed'>
-              I'm a passionate Full Stack Developer with expertise in building
-              modern web applications. I love creating digital experiences that
-              are intuitive, accessible, and solve real-world problems.
+              I began my tech journey with Java, C, and C++, which gave me a solid programming foundation.
+              Over time, my passion shifted toward the data domain, where I’m exploring Python, practicing SQL, and deepening my understanding of mathematics — a subject I’ve always enjoyed.
             </p>
             <p className='text-gray-600 dark:text-gray-400 mb-6 leading-relaxed'>
-              My approach to development centers around creating user-friendly
-              experiences through clean, maintainable code. I enjoy the
-              challenge of turning complex problems into elegant solutions.
+              I’m particularly intrigued by how AI, Data Science, and Machine Learning solutions work behind the scenes, and I’m constantly expanding my knowledge in these areas.
+              My learning path has also led me into tools like the Salesforce CRM platform, reinforcing my belief that every skill adds value to the bigger picture.
             </p>
-
-            <p className='text-gray-600 dark:text-gray-400 mb-8 leading-relaxed'>
-              I specialize in JavaScript and its modern frameworks like React,
-              Next.js, and Node.js. My goal is to create web applications that
-              are not only functional but also aesthetically pleasing and
-              accessible to all users. I believe in continuous learning and
-              staying up-to-date with the latest technologies and best
-              practices.
+            <p className='text-gray-600 dark:text-gray-400 mb-6 leading-relaxed'>
+              Beyond tech, I’m passionate about swimming, music, fitness, motorcycling, and adventure.
+              I approach both my hobbies and my work with the same curiosity — eager to explore, learn, and grow.
             </p>
-
+            
             <div className='text-center'>
               <button
                 onClick={() => scrollToSection('#contact')}
