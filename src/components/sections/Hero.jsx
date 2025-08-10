@@ -39,9 +39,9 @@ const Hero = () => {
             <span className='animate-pulse'>|</span>
           </h2>
           <p className='text-lg mb-8 text-gray-600 dark:text-gray-400 max-w-lg'>
-            I build exceptional digital experiences that are fast, accessible,
-            and responsive. My passion lies in creating solutions that make life
-            easier.
+            I build data-driven solutions that are 
+            efficient, scalable, and insightful.
+            My passion lies in transforming raw information into actionable intelligence that drives better decisions.
           </p>
           <div className='flex flex-wrap gap-4 justify-center md:justify-start'>
             <button
