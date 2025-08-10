@@ -26,7 +26,7 @@ const Skills = () => {
           My <span className='text-blue-600 dark:text-blue-400'>Skills</span>
         </h2>
         <p className='text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mb-12'>
-          I've worked with a variety of technologies in web development. Here's
+          I've worked and continue working with a variety of technologies in web development. Here's
           a snapshot of my technical skills and expertise.
         </p>
 
