@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
-  const fullText = 'Full Stack Developer';
+  const fullText = 'Data Enthusiast';
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
