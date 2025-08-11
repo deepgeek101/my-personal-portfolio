@@ -159,7 +159,7 @@ const Contact = () => {
                     Location
                   </h4>
                   <p className='text-gray-600 dark:text-gray-400'>
-                    Your City, Country
+                    Bhubaneswar-751024, Odisha, India
                   </p>
                 </div>
               </div>
