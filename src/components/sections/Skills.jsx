@@ -1,19 +1,18 @@
 const Skills = () => {
   const skills = [
-    { name: 'HTML5', icon: 'devicon-html5-plain colored' },
-    { name: 'CSS3', icon: 'devicon-css3-plain colored' },
-    { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
-    { name: 'React', icon: 'devicon-react-original colored' },
-    { name: 'Next.js', icon: 'devicon-nextjs-original-wordmark' },
-    { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
-    { name: 'Tailwind CSS', icon: 'devicon-tailwindcss-plain colored' },
-    { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
-    { name: 'Express', icon: 'devicon-express-original' },
-    { name: 'MongoDB', icon: 'devicon-mongodb-plain colored' },
-    { name: 'Git', icon: 'devicon-git-plain colored' },
-    { name: 'Docker', icon: 'devicon-docker-plain colored' },
-    { name: 'Redux', icon: 'devicon-redux-original colored' },
-    { name: 'Figma', icon: 'devicon-figma-plain colored' },
+  { name: 'Python', icon: 'devicon-python-plain colored' },
+  { name: 'Pandas', icon: 'devicon-pandas-plain colored' },       
+  { name: 'NumPy', icon: 'devicon-numpy-original colored' }, 
+  { name: 'Power BI', icon: 'devicon-powerbi-plain colored' },
+  { name: 'SQL (MySQL)', icon: 'devicon-mysql-plain colored' },
+  { name: 'C++', icon: 'devicon-cplusplus-plain colored' },
+  { name: 'C', icon: 'devicon-c-plain colored' },
+  { name: 'Java', icon: 'devicon-java-plain colored' },
+  { name: 'Git', icon: 'devicon-git-plain colored' },
+   { name: 'Docker', icon: 'devicon-docker-plain colored' },
+  { name: 'Linux', icon: 'devicon-linux-plain colored' },
+  { name: 'Salesforce', icon: 'devicon-salesforce-plain colored' }, 
+  { name: 'AWS', icon: 'devicon-amazonwebservices-plain colored' }
   ];
 
   return (
