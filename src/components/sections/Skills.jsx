@@ -13,6 +13,7 @@ const Skills = () => {
   { name: 'Linux', icon: 'devicon-linux-plain colored' },
   { name: 'Salesforce', icon: 'devicon-salesforce-plain colored' }, 
   { name: 'AWS', icon: 'devicon-amazonwebservices-plain colored' }
+  { name: 'Django', icon: 'devicon-django-plain colored' },
   ];
 
   return (
