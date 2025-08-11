@@ -127,7 +127,8 @@ const Contact = () => {
                     Phone
                   </h4>
                   <p className='text-gray-600 dark:text-gray-400'>
-                    +977 9745654628
+                    +977 9745654628 [What's App]
+                    +91 8148728160 [What's App, Call]
                   </p>
                 </div>
               </div>
