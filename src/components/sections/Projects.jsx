@@ -6,7 +6,7 @@ const Projects = () => {
       title: "Earthbag Domehouse Workshop",
       description:
         "An eco-friendly shelter built using earthbag architecture and local resources. Involved 3 weeks of intensive teamwork, sustainable resource planning, and alternative building methods.",
-      image: "/api/placeholder/400/300",
+      image: domeHouseImg,
       technologies: [
         "Volunteering",
         "Sustainable Building",
