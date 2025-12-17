@@ -1,10 +1,11 @@
+import domeHouseImg from "../../assets/earthbag-domehouse.jpg";
 const Projects = () => {
   const projects = [
     {
       id: 1,
       title: "Earthbag Domehouse Workshop",
       description:
-        "An eco-friendly shelter built using earthbag architecture and local resources. Involves 3 weeks of intensive teamwork, sustainable resource planning, and alternative building methods.",
+        "An eco-friendly shelter built using earthbag architecture and local resources. Involved 3 weeks of intensive teamwork, sustainable resource planning, and alternative building methods.",
       image: "/api/placeholder/400/300",
       technologies: [
         "Volunteering",
@@ -79,8 +80,8 @@ const Projects = () => {
           My <span className="text-blue-600 dark:text-blue-400">Projects</span>
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mb-12">
-          Here are some of my recent projects that showcase my skills and
-          experience in building web applications.
+          Here are some of my recent real-world projects that showcase my
+          technical skills and the causes I am personally aligned with
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
