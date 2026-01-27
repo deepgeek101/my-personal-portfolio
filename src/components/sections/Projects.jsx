@@ -16,7 +16,7 @@ const Projects = () => {
         "Creativity",
         "Adaptability",
       ],
-      liveLink: "https://deepsplanet.blogspot.com/2021/09/coding-in-c.html",
+      liveLink: "https://linkedin.com/in/deep-chaulagain",
       instagramLink: "https://www.instagram.com/farm_the_transformer/",
     },
     {
@@ -66,8 +66,8 @@ const Projects = () => {
         "React Router",
         "EmailJS",
       ],
-      liveLink: "https://your-portfolio.com",
-      githubLink: "https://github.com/yourusername/portfolio",
+      liveLink: "https://deepchaulagain.com.np",
+      githubLink: "https://github.com/deepgeek101/my-personal-portfolio",
     },
   ];
 
