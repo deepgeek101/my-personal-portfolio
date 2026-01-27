@@ -43,8 +43,8 @@ const Projects = () => {
         "Using the dataset MIaMIA-Open-Data-Cervical-AIS-Histopathology-Image: CASIHI, developed a deep learning model to classify cervical histopathological images into various categories using PyTorch and Grad-CAM for interpretability.",
       image: "/api/placeholder/400/300",
       technologies: ["PyTorch", "Grad-CAM", "CNNs", "Transfer Learning"],
-      liveLink: "https://example-weather.com",
-      githubLink: "https://github.com/yourusername/weather-dashboard",
+      githubLink:
+        "https://github.com/deepgeek101/Histopathological-Classification-Project",
     },
     {
       id: 4,
