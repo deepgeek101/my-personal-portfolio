@@ -38,18 +38,11 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "Weather Dashboard",
+      title: "Histopathological Images Classification",
       description:
-        "A responsive weather dashboard that displays current weather conditions, forecasts, and weather maps using external APIs.",
+        "Using the dataset MIaMIA-Open-Data-Cervical-AIS-Histopathology-Image: CASIHI, developed a deep learning model to classify cervical histopathological images into various categories using PyTorch and Grad-CAM for interpretability.",
       image: "/api/placeholder/400/300",
-      technologies: [
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Weather API",
-        "Chart.js",
-        "Local Storage",
-      ],
+      technologies: ["PyTorch", "Grad-CAM", "CNNs", "Transfer Learning"],
       liveLink: "https://example-weather.com",
       githubLink: "https://github.com/yourusername/weather-dashboard",
     },
