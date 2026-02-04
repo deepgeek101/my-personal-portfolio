@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Added useEffect
 import { supabase } from "../../supabaseClient";
 
 const Contact = () => {
@@ -9,12 +9,21 @@ const Contact = () => {
     message: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState(""); // New state for Turnstile
+
   const [formStatus, setFormStatus] = useState({
     isSubmitting: false,
     isSubmitted: false,
     isError: false,
     errorMessage: "",
   });
+
+  // Setup the global callback for Turnstile
+  useEffect(() => {
+    window.onTurnstileSuccess = (token) => {
+      setCaptchaToken(token);
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +32,17 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Security Check: Ensure captcha is completed
+    if (!captchaToken) {
+      setFormStatus({
+        ...formStatus,
+        isError: true,
+        errorMessage: "Please complete the security check.",
+      });
+      return;
+    }
+
     setFormStatus({
       isSubmitting: true,
       isSubmitted: false,
@@ -50,6 +70,7 @@ const Contact = () => {
         subject: "",
         message: "",
       });
+      setCaptchaToken(""); // Reset token after success
 
       setTimeout(() => {
         setFormStatus((prev) => ({ ...prev, isSubmitted: false }));
@@ -323,6 +344,20 @@ const Contact = () => {
               >
                 {" "}
                 {formStatus.isSubmitting ? "Sending..." : "Send Message"}{" "}
+              </button>
+              {/* CLOUDFLARE TURNSTILE WIDGET */}
+              <div
+                className="cf-turnstile"
+                data-sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY}
+                data-callback="onTurnstileSuccess"
+                data-theme="auto"
+              ></div>
+              <button
+                type="submit"
+                disabled={formStatus.isSubmitting || !captchaToken} // Button disabled until verified
+                className="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
+              >
+                {formStatus.isSubmitting ? "Sending..." : "Send Message"}
               </button>
               {/* Status Messages */}{" "}
               {formStatus.isSubmitted && (
