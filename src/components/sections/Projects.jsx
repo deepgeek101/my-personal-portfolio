@@ -85,12 +85,14 @@ const Projects = () => {
               className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
             >
               <div className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 pointer-events-none z-0"></div>
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-48 object-cover relative z-10 block"
                 />
-                <div className="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
               </div>
 
               <div className="p-6">
