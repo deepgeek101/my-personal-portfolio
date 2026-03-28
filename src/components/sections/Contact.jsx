@@ -181,7 +181,7 @@ const Contact = () => {
 
             <div className="pt-8">
               <h4 className="font-medium text-gray-900 dark:text-white mb-4">
-                Follow Me
+                Socials
               </h4>
               <div className="flex space-x-4">
                 <a
