@@ -1,6 +1,18 @@
+import useEffect from "react";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.dataset.goatcounter = "https://deepchaulagain.goatcounter.com/count"; // 👈 replace with your code
+    script.src = "//gc.zgo.at/count.js";
+    document.body.appendChild(script);
 
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
     <footer className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
       <div className="container mx-auto px-6 py-8">
