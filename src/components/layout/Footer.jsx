@@ -5,7 +5,7 @@ const Footer = () => {
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
-    script.dataset.goatcounter = "https://deepchaulagain.goatcounter.com/count"; // 👈 replace with your code
+    script.dataset.goatcounter = "https://deepc.goatcounter.com/count";
     script.src = "//gc.zgo.at/count.js";
     document.body.appendChild(script);
 
