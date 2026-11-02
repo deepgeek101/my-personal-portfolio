@@ -1,4 +1,4 @@
-import domeHouseImg from "../../assets/earthbag-domehouse.jpg";
+import domeHouseImg from "../../assets/earthbag-domehouse.webp";
 const Projects = () => {
   const projects = [
     {
@@ -7,58 +7,24 @@ const Projects = () => {
       description:
         "An eco-friendly shelter built using earthbag architecture and local resources. Involved 3 weeks of intensive teamwork, sustainable resource planning, and alternative building methods.",
       image: domeHouseImg,
-      technologies: [
-        "Volunteering",
-        "Sustainable Building",
-        "Teamwork",
-        "Collaborative Design",
-        "Problem Solving",
-        "Creativity",
-        "Adaptability",
-      ],
-      liveLink: "https://linkedin.com/in/deep-chaulagain",
+      technologies: ["Volunteering", "Sustainable Building", "Teamwork"],
       instagramLink: "https://www.instagram.com/farm_the_transformer/",
     },
     {
       id: 2,
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      image: "/api/placeholder/400/300",
-      technologies: [
-        "React",
-        "TypeScript",
-        "Firebase",
-        "Material-UI",
-        "Socket.io",
-        "Redux",
-      ],
-      liveLink: "https://example-taskmanager.com",
-      githubLink: "https://github.com/yourusername/task-manager",
-    },
-    {
-      id: 3,
       title: "Histopathological Images Classification",
       description:
         "Using the dataset MIaMIA-Open-Data-Cervical-AIS-Histopathology-Image: CASIHI, developed a deep learning model to classify cervical histopathological images into various categories using PyTorch and Grad-CAM for interpretability.",
-      image: "/api/placeholder/400/300",
       technologies: ["PyTorch", "Grad-CAM", "CNNs", "Transfer Learning"],
       githubLink:
         "https://github.com/deepgeek101/Histopathological-Classification-Project",
     },
     {
-      id: 4,
+      id: 3,
       title: "Portfolio Website",
       description:
-        "A responsive portfolio website built with React and Tailwind CSS, featuring smooth animations and dark mode support.",
-      image: "/api/placeholder/400/300",
-      technologies: [
-        "React",
-        "Tailwind CSS",
-        "Framer Motion",
-        "React Router",
-        "EmailJS",
-      ],
+        "A responsive portfolio website built with React and Tailwind CSS, with dark mode support.",
+      technologies: ["React", "Tailwind CSS", "Vite"],
       liveLink: "https://deepchaulagain.com.np",
       githubLink: "https://github.com/deepgeek101/my-personal-portfolio",
     },
@@ -84,16 +50,17 @@ const Projects = () => {
               key={project.id}
               className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
             >
-              <div className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-blue-600 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 pointer-events-none z-0"></div>
+              {project.image && (
                 <img
                   src={project.image}
                   alt={project.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-48 object-cover relative z-10 block"
+                  width={1200}
+                  height={900}
+                  className="w-full h-48 object-cover block"
                 />
-              </div>
+              )}
 
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
@@ -156,7 +123,6 @@ const Projects = () => {
                       Code
                     </a>
                   )}
-                  {/* NEW: Instagram/Volunteering Proof Button */}
                   {project.instagramLink && (
                     <a
                       href={project.instagramLink}
