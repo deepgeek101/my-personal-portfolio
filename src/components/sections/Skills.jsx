@@ -1,22 +1,29 @@
 import PowerBISVG from "../../assets/power-bi-2021.svg";
+import { site } from "../../content/site";
+
+// Icons for the tool names in site.tools. A string is a devicon class; an
+// object is an image. Goes away with the skills grid in Phase 4.
+const icons = {
+  Python: "devicon-python-plain colored",
+  Pandas: "devicon-pandas-plain colored",
+  NumPy: "devicon-numpy-plain",
+  "Power BI": { src: PowerBISVG },
+  "SQL (MySQL)": "devicon-mysql-plain colored",
+  "C++": "devicon-cplusplus-plain colored",
+  C: "devicon-c-plain colored",
+  Java: "devicon-java-plain colored",
+  Git: "devicon-git-plain colored",
+  Docker: "devicon-docker-plain colored",
+  Linux: "devicon-linux-plain colored",
+  Salesforce: "devicon-salesforce-plain colored",
+  AWS: "devicon-amazonwebservices-plain colored",
+  Django: "devicon-django-plain colored",
+};
 
 const Skills = () => {
-  const skills = [
-    { name: "Python", icon: "devicon-python-plain colored" },
-    { name: "Pandas", icon: "devicon-pandas-plain colored" },
-    { name: "NumPy", icon: "devicon-numpy-plain" },
-    { name: "Power BI", icon: PowerBISVG, isSVG: true },
-    { name: "SQL (MySQL)", icon: "devicon-mysql-plain colored" },
-    { name: "C++", icon: "devicon-cplusplus-plain colored" },
-    { name: "C", icon: "devicon-c-plain colored" },
-    { name: "Java", icon: "devicon-java-plain colored" },
-    { name: "Git", icon: "devicon-git-plain colored" },
-    { name: "Docker", icon: "devicon-docker-plain colored" },
-    { name: "Linux", icon: "devicon-linux-plain colored" },
-    { name: "Salesforce", icon: "devicon-salesforce-plain colored" },
-    { name: "AWS", icon: "devicon-amazonwebservices-plain colored" },
-    { name: "Django", icon: "devicon-django-plain colored" },
-  ];
+  const skills = [...site.tools.current, ...site.tools.startedOn].map(
+    (name) => ({ name, icon: icons[name] })
+  );
 
   return (
     <section
@@ -28,8 +35,7 @@ const Skills = () => {
           My <span className="text-blue-600 dark:text-blue-400">Skills</span>
         </h2>
         <p className="text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto mb-12">
-          I've worked and continue working with a variety of technologies in web
-          development. Here's a snapshot of my technical skills and expertise.
+          {site.copy.skillsIntro}
         </p>
 
         <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-8">
@@ -40,20 +46,14 @@ const Skills = () => {
                 className="flex flex-col items-center group"
               >
                 <div className="w-16 h-16 flex items-center justify-center bg-gray-50 dark:bg-gray-600 rounded-lg mb-3 p-3 transition-all duration-300 shadow-md group-hover:shadow-lg group-hover:scale-110">
-                  {skill.isSVG ? (
+                  {typeof skill.icon === "object" ? (
                     <img
-                      src={skill.icon}
-                      alt={skill.name}
+                      src={skill.icon.src}
+                      alt=""
                       className="w-full h-full object-contain"
                     />
                   ) : (
-                    <i
-                      className={`${skill.icon} text-3xl ${
-                        skill.name === "Express" || skill.name === "Next.js"
-                          ? "dark:text-white"
-                          : ""
-                      }`}
-                    ></i>
+                    <i className={`${skill.icon} text-3xl`} aria-hidden="true"></i>
                   )}
                 </div>
                 <span className="text-sm text-gray-700 dark:text-gray-300 font-medium text-center">

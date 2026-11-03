@@ -289,7 +289,7 @@ Each phase lists what Deep should **learn** while it's built. Agents: explain th
 ## 9. Progress
 
 - [x] Phase 1 — Clean up · first load ~9 MB → ~270 KB. Deferred: devicon CDN stays until the Skills grid is replaced in Phase 4; `animate-fade-in` class is a no-op (its config was dead) and goes away in Phase 4.
-- [ ] Phase 2 — Content
+- [x] Phase 2 — Content · `src/content/{site,projects,now,photos}.js` hold all text and links; components read from them; one `Icon` component replaces the copy-pasted SVGs. Existing copy kept as-is; every `null` field is a `TODO(deep)` and is skipped when rendering. Section headings stay in components until the Phase 4 layout.
 - [ ] Phase 3 — Tokens & type
 - [ ] Phase 4 — Layout & sections
 - [ ] Phase 5 — Interactions
@@ -301,4 +301,5 @@ Each phase lists what Deep should **learn** while it's built. Agents: explain th
 | 2026-11-02 | Concept: field notebook / blueprint, lamp toggle | Ties name, data work, and building together; avoids template look |
 | 2026-11-02 | Drop contact form, Supabase, Umami, Turnstile | Less to maintain; email link is more personal |
 | 2026-11-02 | GoatCounter loaded from `index.html`, not a React effect | Avoids double-counting under StrictMode; no JS needed for it |
+| 2026-11-02 | Unanswered content is `null` and skipped by components, never shown as "TODO" | The live site never shows half-written text |
 | 2026-11-02 | ESLint: `react/prop-types` and `react/no-unescaped-entities` off | Plain-JS project without PropTypes; apostrophes in copy are fine |
