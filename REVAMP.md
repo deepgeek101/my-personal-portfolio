@@ -57,14 +57,16 @@ Define in `src/index.css` with Tailwind v4 `@theme` + CSS custom properties. Com
 | `--bg` | `#F4EFE6` | `#0F2A44` | page background |
 | `--ink` | `#1C1B19` | `#E8EEF5` | body text, headings |
 | `--muted` | `#6B655C` | `#9FB3C8` | secondary text, annotations |
-| `--rule` | `#E2DACB` | `rgba(232,238,245,.10)` | hairlines, grid lines |
+| `--rule` | `#E2DACB` | `rgba(232,238,245,.10)` | hairlines, section rules |
+| `--grid` | `#E2DACB` | `rgba(232,238,245,.045)` | background graph-paper lines (fainter than rules in blueprint) |
 | `--accent` | `#C8102E` (Nepal-flag crimson) | `#FF8A6B` | links on hover, the underline stroke, one highlight per screen |
 | `--selection` | `#C8102E1F` | `#FF8A6B33` | `::selection` background |
+| `--frame` | `#FFFFFF` | `#163A5C` | polaroid frames |
 
 Rules:
 - Accent is **scarce**: link hover strokes, the crosshair dot, the active section label. Never large fills.
 - All text pairs must meet WCAG AA (4.5:1). The values above were chosen to pass; re-check if any are changed.
-- Blueprint mode also gets a faint grid on the whole page (`--rule` lines every 24px) — paper mode keeps the grid only inside the hero plot.
+- Blueprint mode also gets a faint grid on the whole page (`--grid` lines every 24px) — paper mode keeps the grid only inside the hero plot.
 
 ### 2.2 Typography
 
@@ -290,8 +292,8 @@ Each phase lists what Deep should **learn** while it's built. Agents: explain th
 
 - [x] Phase 1 — Clean up · first load ~9 MB → ~270 KB. Deferred: devicon CDN stays until the Skills grid is replaced in Phase 4; `animate-fade-in` class is a no-op (its config was dead) and goes away in Phase 4.
 - [x] Phase 2 — Content · `src/content/{site,projects,now,photos}.js` hold all text and links; components read from them; one `Icon` component replaces the copy-pasted SVGs. Existing copy kept as-is; every `null` field is a `TODO(deep)` and is skipped when rendering. Section headings stay in components until the Phase 4 layout.
-- [ ] Phase 3 — Tokens & type
-- [ ] Phase 4 — Layout & sections
+- [x] Phase 3 — Tokens & type · done together with Phase 4 (one PR). Paper/blueprint tokens in `index.css`, `data-theme` set before paint, Fraunces + IBM Plex via Google Fonts, no `gray-*`/`blue-*` left; all text pairs checked ≥ 4.5:1.
+- [x] Phase 4 — Layout & sections · TopLine, Intro (§ 00), Work list, Now (hidden while empty), Off-screen polaroids, Say hello, Footer with Kathmandu time. Checked at 360 / 768 / 1100px, both themes, no horizontal overflow. Deferred: Lighthouse not run yet (Phase 6); fonts are ~323 KB, so self-host + subset them in Phase 6 to stay well under the 600 KB budget.
 - [ ] Phase 5 — Interactions
 - [ ] Phase 6 — Polish & ship
 
@@ -302,4 +304,9 @@ Each phase lists what Deep should **learn** while it's built. Agents: explain th
 | 2026-11-02 | Drop contact form, Supabase, Umami, Turnstile | Less to maintain; email link is more personal |
 | 2026-11-02 | GoatCounter loaded from `index.html`, not a React effect | Avoids double-counting under StrictMode; no JS needed for it |
 | 2026-11-02 | Unanswered content is `null` and skipped by components, never shown as "TODO" | The live site never shows half-written text |
+| 2026-11-03 | Phases 3 and 4 done as one PR | Recolouring the old layout only to replace it would be throwaway work |
+| 2026-11-03 | Margin shows `§ 01`; the section title is a separate Fraunces wonky-italic heading | Gives the display font a job beyond the name; avoids printing "WORK" twice |
+| 2026-11-03 | Existing About paragraphs sit under the intro sentence; the hobbies paragraph moved to Off-screen | Keeps Deep's own words until rewritten, instead of dropping them |
+| 2026-11-03 | Profile photo is a polaroid (re-cropped square from the original), not a hero image | Spec says no photo in the intro; a print fits the notebook idea |
+| 2026-11-03 | Fonts from Google Fonts for now | Simplest start; self-hosting is a Phase 6 task |
 | 2026-11-02 | ESLint: `react/prop-types` and `react/no-unescaped-entities` off | Plain-JS project without PropTypes; apostrophes in copy are fine |

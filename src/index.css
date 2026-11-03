@@ -1,13 +1,165 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
+/*
+ * Design tokens (REVAMP.md §2). Two themes:
+ *   paper      — lamp on  (light)
+ *   blueprint  — lamp off (dark)
+ * The theme is set by data-theme on <html> (see the script in index.html), so
+ * switching it only swaps these variables; no component re-renders.
+ * Contrast of every text pair below was checked against WCAG AA (4.5:1).
+ */
+:root,
+[data-theme='paper'] {
+  --bg: #f4efe6;
+  --ink: #1c1b19;
+  --muted: #6b655c;
+  --rule: #e2dacb;
+  --grid: #e2dacb;
+  --accent: #c8102e;
+  --selection: #c8102e1f;
+  --frame: #ffffff;
+  color-scheme: light;
+}
 
-:root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+[data-theme='blueprint'] {
+  --bg: #0f2a44;
+  --ink: #e8eef5;
+  --muted: #9fb3c8;
+  --rule: rgba(232, 238, 245, 0.1);
+  --grid: rgba(232, 238, 245, 0.045);
+  --accent: #ff8a6b;
+  --selection: #ff8a6b33;
+  --frame: #163a5c;
+  color-scheme: dark;
+}
+
+/*
+ * `inline` makes utilities like text-ink compile to var(--ink) instead of a
+ * fixed value, which is what lets the theme switch at runtime.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-frame: var(--frame);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --ease-ink: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@layer base {
+  html {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+
+  /* Blueprint mode gets the faint grid on the whole page. */
+  [data-theme='blueprint'] body {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  ::selection {
+    background-color: var(--selection);
+  }
+
+  :focus-visible {
+    outline: 2px dashed var(--accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0s !important;
+      transition-duration: 0s !important;
+    }
+  }
+}
+
+/* Small uppercase mono text: section markers, dates, tool lists. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* Inline text link. Phase 5 replaces the underline with a drawn squiggle. */
+@utility link {
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms var(--ease-ink);
+
+  &:hover,
+  &:focus-visible {
+    text-decoration-color: var(--accent);
+  }
+}
+
+/* Fraunces italic with its "wonky" letterforms: the hand-made touch. */
+@utility wonky {
+  font-style: italic;
+  font-variation-settings:
+    'SOFT' 50,
+    'WONK' 1;
+}
+
+@layer components {
+  /*
+   * The intro is a "plot area". In paper mode it gets its own graph paper,
+   * fading out towards the edges; blueprint already has a grid everywhere.
+   */
+  [data-theme='paper'] .plot-grid {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at 30% 50%, #000 20%, transparent 70%);
+  }
+
+  /* A photo print with a strip of tape. --r is set per photo, in degrees. */
+  .polaroid {
+    position: relative;
+    transform: rotate(var(--r, 0deg));
+  }
+
+  .polaroid::before {
+    content: '';
+    position: absolute;
+    top: -0.6rem;
+    left: 50%;
+    width: 4rem;
+    height: 1.25rem;
+    transform: translateX(-50%) rotate(-3deg);
+    background-color: color-mix(in srgb, var(--muted) 22%, transparent);
+  }
 }
