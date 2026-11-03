@@ -2,13 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon-web.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Deep Chaulagain | Portfolio</title>
+    <link rel="icon" type="image/png" href="/icon-web.png" />
+
+    <!--
+      Set the theme before the first paint so there's no flash of the wrong
+      colours. A saved choice wins; otherwise follow the system setting.
+    -->
+    <script>
+      (function () {
+        var theme;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch (e) {}
+        if (theme !== 'paper' && theme !== 'blueprint') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'blueprint'
+            : 'paper';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..500,0..100,0..1;1,9..144,400..500,0..100,0..1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>

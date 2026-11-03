@@ -1,33 +1,34 @@
 import { site } from "../../content/site";
-import Icon from "../Icon";
+import useKathmanduTime from "../../hooks/useKathmanduTime";
+import { Columns, Rule } from "./Section";
+
+const partOfDay = (hour) => {
+  if (hour < 6) return "night";
+  if (hour < 12) return "morning";
+  if (hour < 17) return "afternoon";
+  if (hour < 22) return "evening";
+  return "night";
+};
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  return (
-    <footer className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
-      <div className="container mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p className="text-gray-600 dark:text-gray-400">
-              © {currentYear} {site.name}. All rights reserved.
-            </p>
-          </div>
+  const { time, hour } = useKathmanduTime();
+  const phrase = site.timeOfDayPhrases?.[partOfDay(hour)];
 
-          <div className="flex space-x-6">
-            {site.socials.map((social) => (
-              <a
-                key={social.id}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                aria-label={social.label}
-              >
-                <Icon name={social.id} className="w-6 h-6" />
-              </a>
-            ))}
-          </div>
-        </div>
+  return (
+    <footer>
+      <Rule />
+      <div className="py-10 text-sm text-muted">
+        <Columns marker="§ end">
+          <p>
+            {site.buildCity && <>Built by hand in {site.buildCity}. </>}
+            Last updated {__BUILD_DATE__}. It&rsquo;s{" "}
+            <time className="font-mono">{time}</time> in {site.location.city}
+            {phrase ? <> &mdash; {phrase}.</> : "."}
+          </p>
+          <p className="mt-2">
+            © {new Date().getFullYear()} {site.name}
+          </p>
+        </Columns>
       </div>
     </footer>
   );
