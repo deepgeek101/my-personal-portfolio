@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import profilePic from "../../assets/profile.webp";
+import { site } from "../../content/site";
 
 const Hero = () => {
   const [typedText, setTypedText] = useState("");
-  const fullText = "Data Enthusiast";
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (index < fullText.length) {
+    if (index < site.role.length) {
       const timeout = setTimeout(() => {
-        setTypedText(typedText + fullText[index]);
+        setTypedText(typedText + site.role[index]);
         setIndex(index + 1);
       }, 100);
 
@@ -34,7 +34,7 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white animate-fade-in">
             Hi, I'm{" "}
             <span className="text-blue-600 dark:text-blue-400">
-              Deep Chaulagain
+              {site.name}
             </span>
           </h1>
           <h2 className="text-2xl md:text-3xl mb-6 text-gray-700 dark:text-gray-300">
@@ -42,9 +42,7 @@ const Hero = () => {
             <span className="animate-pulse">|</span>
           </h2>
           <p className="text-lg mb-8 text-gray-600 dark:text-gray-400 max-w-lg">
-            I build data-driven solutions that are efficient, scalable, and
-            insightful. My passion lies in transforming raw information into
-            actionable intelligence that drives better decisions.
+            {site.intro}
           </p>
           <div className="flex flex-wrap gap-4 justify-center md:justify-start">
             <button
@@ -66,7 +64,7 @@ const Hero = () => {
           <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-blue-600 dark:border-blue-400 shadow-xl">
             <img
               src={profilePic}
-              alt="Deep Chaulagain"
+              alt={site.name}
               width={800}
               height={800}
               fetchPriority="high"
