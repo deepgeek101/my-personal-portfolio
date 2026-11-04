@@ -1,28 +1,23 @@
 import { site } from "../../content/site";
 import Section from "../layout/Section";
+import CopyEmail from "../CopyEmail";
+import InkLink from "../InkLink";
 
-// Click-to-copy on the email comes in Phase 5; mailto: stays as the fallback.
 const Hello = (section) => {
   return (
     <Section {...section}>
       <p className="max-w-[60ch]">{site.copy.hello}</p>
       <p className="mt-6 break-words font-display text-[clamp(1.25rem,3vw,1.75rem)]">
-        <a href={`mailto:${site.email}`} className="link">
-          {site.email}
-        </a>
+        <CopyEmail email={site.email} />
       </p>
-      <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+      {/* Extra room above so the "copied ✓" note doesn't sit on these links. */}
+      <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2">
         {site.socials.map((social) => (
           <li key={social.id}>
-            <a
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
+            <InkLink href={social.href} target="_blank" rel="noopener noreferrer">
               {social.label}
               <span aria-hidden="true"> ↗</span>
-            </a>
+            </InkLink>
           </li>
         ))}
       </ul>

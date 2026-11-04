@@ -85,6 +85,11 @@
     outline-offset: 3px;
   }
 
+  /* Tailwind's reset gives buttons the default arrow; these are clickable. */
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -109,20 +114,6 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--muted);
-}
-
-/* Inline text link. Phase 5 replaces the underline with a drawn squiggle. */
-@utility link {
-  text-decoration-line: underline;
-  text-decoration-color: var(--rule);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 200ms var(--ease-ink);
-
-  &:hover,
-  &:focus-visible {
-    text-decoration-color: var(--accent);
-  }
 }
 
 /* Fraunces italic with its "wonky" letterforms: the hand-made touch. */
@@ -150,6 +141,11 @@
   .polaroid {
     position: relative;
     transform: rotate(var(--r, 0deg));
+    transition: transform 250ms var(--ease-ink);
+  }
+
+  .polaroid:is(:hover, :focus-visible) {
+    transform: translateY(-4px) rotate(0deg);
   }
 
   .polaroid::before {
@@ -162,4 +158,316 @@
     transform: translateX(-50%) rotate(-3deg);
     background-color: color-mix(in srgb, var(--muted) 22%, transparent);
   }
+}
+
+/*
+ * Phase 5 interactions (REVAMP.md §4). Unlayered on purpose: these state
+ * rules (e.g. an active label turning accent) must beat Tailwind utilities,
+ * and plain CSS outside @layer always wins over layered CSS.
+ */
+
+/* Hand-drawn strokes: the dash trick. With pathLength="1", a dash of 1 is the
+   whole path; offsetting it by 1 hides it, offsetting by 0 draws it. */
+.squiggle {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.squiggle path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  /* Round caps still paint a dot for a zero-length dash, so a "hidden" stroke
+     is also made transparent — but only once it has finished un-drawing. */
+  stroke-opacity: 0;
+  transition:
+    stroke-dashoffset 300ms var(--ease-ink),
+    stroke-opacity 0s linear 300ms;
+}
+
+:is(.ink-link:is(:hover, :focus-visible), .row-button[aria-expanded='true'])
+  .squiggle
+  path {
+  stroke-opacity: 1;
+  transition:
+    stroke-dashoffset 300ms var(--ease-ink),
+    stroke-opacity 0s;
+}
+
+/* §4.2 Ink links: a faint straight underline at rest, a squiggle on hover. */
+.ink-link {
+  position: relative;
+  display: inline-block;
+  text-decoration-line: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.ink-link:is(:hover, :focus-visible) {
+  text-decoration-color: transparent;
+}
+
+.ink-link-line {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 8px;
+}
+
+.ink-link:is(:hover, :focus-visible) .ink-link-line path {
+  stroke-dashoffset: 0;
+}
+
+/* §4.3 Lamp: the pull-cord swings once per click... */
+.lamp-cord {
+  width: 8px;
+  height: 20px;
+  margin-top: -2px;
+  transform-origin: 50% 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.lamp-cord line {
+  stroke-width: 1;
+}
+
+.lamp-cord-pulled {
+  animation: cord-swing 600ms var(--ease-ink);
+}
+
+@keyframes cord-swing {
+  25% { transform: rotate(8deg) translateY(2px); }
+  55% { transform: rotate(-6deg); }
+  80% { transform: rotate(3deg); }
+}
+
+/* ...and the new theme grows as a circle from the click (View Transitions). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: lamp-reveal 450ms var(--ease-ink);
+}
+
+@keyframes lamp-reveal {
+  from { clip-path: circle(0 at var(--reveal-x) var(--reveal-y)); }
+  to { clip-path: circle(var(--reveal-r) at var(--reveal-x) var(--reveal-y)); }
+}
+
+/* §4.1 Crosshair plot cursor. --x/--y are written by PlotCursor.jsx. */
+.plot-line {
+  position: absolute;
+  background-color: color-mix(in srgb, var(--muted) 35%, transparent);
+  opacity: 0;
+  transition: opacity 150ms var(--ease-ink);
+}
+
+.plot-line-h {
+  left: 0;
+  right: 0;
+  top: var(--y);
+  height: 1px;
+}
+
+.plot-line-v {
+  top: 0;
+  bottom: 0;
+  left: var(--x);
+  width: 1px;
+}
+
+.plot-readout {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(10px, 8px);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 150ms var(--ease-ink);
+}
+
+[data-plot-active='true'] :is(.plot-line, .plot-readout) {
+  opacity: 1;
+}
+
+.plot-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: var(--accent);
+  vertical-align: 0.1em;
+}
+
+/* Name note: "दीप — lamp" on hover/focus (shown once site.nameMeaning is set). */
+.name-note {
+  position: relative;
+  text-decoration: underline dotted var(--muted);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+}
+
+.name-note-tip {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-ink), transform 200ms var(--ease-ink);
+}
+
+.name-note:is(:hover, :focus-visible) .name-note-tip {
+  opacity: 1;
+  transform: none;
+}
+
+/* §4.4 Project rows: grid-template-rows 0fr -> 1fr animates to "auto" height. */
+.row-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms var(--ease-ink);
+}
+
+.row-body[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+
+.row-title {
+  display: inline-block;
+  transition: transform 200ms var(--ease-ink);
+}
+
+.row-button:is(:hover, :focus-visible) .row-title {
+  transform: translateX(4px);
+}
+
+.row-arrow {
+  display: inline-block;
+  transition: transform 250ms var(--ease-ink);
+}
+
+.row-button[aria-expanded='true'] .row-arrow {
+  transform: rotate(90deg);
+}
+
+.row-circle {
+  position: absolute;
+  left: -0.6rem;
+  top: -0.35rem;
+  width: 2.4rem;
+  height: 1.6rem;
+}
+
+.row-button[aria-expanded='true'] .row-circle path {
+  stroke-dashoffset: 0;
+}
+
+/* §4.5 Preview image that trails the pointer over project rows. */
+.cursor-preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms var(--ease-ink);
+}
+
+.cursor-preview[data-visible='true'] {
+  opacity: 1;
+}
+
+/* §4.6 Enlarged polaroid in a native <dialog>. */
+.photo-dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  max-width: min(90vw, 42rem);
+}
+
+.photo-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.55);
+}
+
+.photo-dialog[open] > * {
+  animation: photo-in 220ms var(--ease-ink);
+}
+
+@keyframes photo-in {
+  from { opacity: 0; transform: scale(0.97) rotate(-1deg); }
+}
+
+/* §4.7 "copied ✓" note next to the email. */
+.copied-note {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 0.4rem;
+  transform: rotate(-3deg) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-ink), transform 200ms var(--ease-ink);
+}
+
+.copied-note[data-visible='true'] {
+  opacity: 1;
+  transform: rotate(-3deg);
+}
+
+/* §4.8 Typing toast, bottom left. */
+.typing-toast {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 40;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--rule);
+  background-color: var(--bg);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-ink), transform 200ms var(--ease-ink);
+}
+
+.typing-toast[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* §4.9 The margin label of the section you're reading turns accent. */
+.label[data-active='true'] {
+  color: var(--accent);
+}
+
+/* §4.9 One gentle entrance per section on load. "backwards" applies the start
+   state during the delay but leaves no transform behind afterwards. */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up {
+    animation: fade-up 300ms var(--ease-ink) backwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
 }
