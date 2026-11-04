@@ -294,7 +294,7 @@ Each phase lists what Deep should **learn** while it's built. Agents: explain th
 - [x] Phase 2 — Content · `src/content/{site,projects,now,photos}.js` hold all text and links; components read from them; one `Icon` component replaces the copy-pasted SVGs. Existing copy kept as-is; every `null` field is a `TODO(deep)` and is skipped when rendering. Section headings stay in components until the Phase 4 layout.
 - [x] Phase 3 — Tokens & type · done together with Phase 4 (one PR). Paper/blueprint tokens in `index.css`, `data-theme` set before paint, Fraunces + IBM Plex via Google Fonts, no `gray-*`/`blue-*` left; all text pairs checked ≥ 4.5:1.
 - [x] Phase 4 — Layout & sections · TopLine, Intro (§ 00), Work list, Now (hidden while empty), Off-screen polaroids, Say hello, Footer with Kathmandu time. Checked at 360 / 768 / 1100px, both themes, no horizontal overflow. Deferred: Lighthouse not run yet (Phase 6); fonts are ~323 KB, so self-host + subset them in Phase 6 to stay well under the 600 KB budget.
-- [ ] Phase 5 — Interactions
+- [x] Phase 5 — Interactions · §4.1–4.9 built: crosshair plot cursor, drawn underlines (`InkLink`/`Squiggle`), lamp pull-cord + circular View Transition reveal, expandable deep-linkable project rows with drawn number circle, trailing cursor preview, polaroids → `<dialog>`, click-to-copy email, typing toast, active margin labels, one-time fade-up. Mouse-only effects are off on touch screens; reduced motion skips the reveal, the fade-up and all transitions. Waiting on content: project stories (rows show only the summary until then), name-meaning note (hidden until `site.nameMeaning` is set), Monkeytype best (toast omits it). Not built: the hand-drawn arrow next to `§ 01` (§3). Not verified: reduced-motion mode in a real browser setting, Safari/Firefox.
 - [ ] Phase 6 — Polish & ship
 
 ### Decisions log
@@ -309,4 +309,7 @@ Each phase lists what Deep should **learn** while it's built. Agents: explain th
 | 2026-11-03 | Existing About paragraphs sit under the intro sentence; the hobbies paragraph moved to Off-screen | Keeps Deep's own words until rewritten, instead of dropping them |
 | 2026-11-03 | Profile photo is a polaroid (re-cropped square from the original), not a hero image | Spec says no photo in the intro; a print fits the notebook idea |
 | 2026-11-03 | Fonts from Google Fonts for now | Simplest start; self-hosting is a Phase 6 task |
+| 2026-11-04 | Crosshair origin is the accent dot beside the coordinates in the intro line, not the plot's centre | A centred dot landed mid-paragraph; on the coordinates, pointing at it reads exactly Kathmandu |
+| 2026-11-04 | Hidden strokes are also `stroke-opacity: 0` | Round line caps paint a dot even for a zero-length dash |
+| 2026-11-04 | Project summary moved inside the expandable row | Keeps the Work list scannable: number, title, tools |
 | 2026-11-02 | ESLint: `react/prop-types` and `react/no-unescaped-entities` off | Plain-JS project without PropTypes; apostrophes in copy are fine |
